@@ -1,0 +1,6 @@
+asgiref==3.7.2
+certifi==2023.7.22
+Django==4.2.7
+pytube==15.0.0
+sqlparse==0.4.4
+typing_extensions==4.8.0

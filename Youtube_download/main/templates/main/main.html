@@ -1,0 +1,12 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Загрузить видео{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.link }}
+        <button type="submit">Скачать видео</button>
+        <p>{{ link| upper}}</p>
+    </form>
+{% endblock %}
