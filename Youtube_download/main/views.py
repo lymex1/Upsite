@@ -1,30 +1,26 @@
 from django.shortcuts import render, redirect
-from .models import Link
 from .forms import LinkForm
-from pytube import YouTube
-
-def Download(link):
-    youtubeObject = YouTube(link)
-    youtubeObject = youtubeObject.streams.get_highest_resolution()
-    try:
-        youtubeObject.download()
-    except:
-        print("An error has occurred")
-    print("Download is completed successfully")
+import webbrowser
 
 def up_text(request):
     error = ''
+    link = ''
+    result = 'sd'
     if request.method == 'POST':
         form = LinkForm(request.POST)
         if form.is_valid():
             link = form.cleaned_data.get('link')
+            webbrowser.open(link)
+            form = LinkForm()
+            result = 'Вы перешли по ссылке'
         else:
             error = 'Форма была неверной'
-    form = LinkForm
+    form = LinkForm()
     data = {
             'form': form,
             'error': error,
-            'link': link
+            'link': link,
+            'result': result
         }
 
     return render(request, 'main/main.html', data)
