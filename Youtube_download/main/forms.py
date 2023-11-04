@@ -1,14 +1,5 @@
-
+from django import forms
 from django.forms import ModelForm, TextInput
-from .models import Link
-class LinkForm(ModelForm):
-    class Meta:
-        model = Link
-        fields = ['link']
 
-        widgets = {
-            "link": TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Ссылка'
-         }),
-        }
+class LinkForm(forms.Form):
+    link = forms.CharField(label='Ссылка', max_length=250)
